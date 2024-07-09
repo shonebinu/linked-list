@@ -116,7 +116,6 @@ class LinkedList {
 		} else {
 			let tmp = this.#head;
 			for (let i = 1; i < index; i++) {
-				// loop until just before the index node
 				tmp = tmp.link;
 			}
 
@@ -131,7 +130,29 @@ class LinkedList {
 		this.#size--;
 	}
 
-	insertAt(value, index) {}
+	insertAt(value, index) {
+		if (index < 0 || index > this.#size) {
+			return;
+		}
+
+		if (index === 0) {
+			this.prepend(value);
+			return;
+		}
+
+		if (index === this.#size) {
+			this.append(value);
+			return;
+		}
+
+		let tmp = this.#head;
+		for (let i = 1; i < index; i++) {
+			tmp = tmp.link;
+		}
+		tmp.link = new Node(value, tmp.link);
+
+		this.#size++;
+	}
 }
 
 export default LinkedList;

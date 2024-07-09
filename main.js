@@ -21,3 +21,13 @@ console.log(list.size()); // 3
 
 list.removeAt(1);
 console.log(list.toString());
+
+list.insertAt(100, 0);
+list.insertAt(101, 3);
+console.log(list.toString());
+
+list.insertAt(200, 2);
+console.log(list.toString());
+
+list.insertAt(250, 1);
+console.log(list.toString());
