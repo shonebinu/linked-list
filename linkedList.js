@@ -44,6 +44,63 @@ class LinkedList {
 
 		this.#size++;
 	}
+
+	prepend(value) {
+		if (this.#head === null) {
+			this.#head = this.#tail = new Node(value);
+		} else {
+			this.#head = new Node(value, this.#head);
+		}
+
+		this.#size++;
+	}
+
+	at(index) {
+		let tmp = this.#head;
+		for (let i = 1; i <= index; i++) {
+			if (tmp === null) {
+				return null;
+			}
+			tmp = tmp.link;
+		}
+		return tmp;
+	}
+
+	pop() {
+		if (this.#head === null) {
+			return;
+		}
+
+		if (this.#head === this.#tail) {
+			this.#head = this.#tail = null;
+		} else {
+			let tmp = this.#head;
+
+			while (tmp.link !== this.#tail) {
+				tmp = tmp.link;
+			}
+			tmp.link = null;
+
+			this.#tail = tmp;
+		}
+
+		this.#size--;
+	}
+
+	find(value) {
+		let tmp = this.#head;
+		for (let i = 0; tmp; i++) {
+			if (tmp.value === value) {
+				return i;
+			}
+			tmp = tmp.link;
+		}
+		return null;
+	}
+
+	contains(value) {
+		return this.find(value) !== null;
+	}
 }
 
 export default LinkedList;
