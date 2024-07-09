@@ -18,3 +18,6 @@ console.log(list.toString()); // ( 0 ) -> ( 1 ) -> ( 2 ) -> null
 
 console.log(list.at(1).value); // 1
 console.log(list.size()); // 3
+
+list.removeAt(1);
+console.log(list.toString());

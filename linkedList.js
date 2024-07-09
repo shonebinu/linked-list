@@ -101,6 +101,37 @@ class LinkedList {
 	contains(value) {
 		return this.find(value) !== null;
 	}
+
+	removeAt(index) {
+		if (this.#head === null || index < 0 || index >= this.#size) {
+			return;
+		}
+
+		if (index === 0) {
+			if (this.#head === this.#tail) {
+				this.#head = this.#tail = null;
+			} else {
+				this.#head = this.#head.link;
+			}
+		} else {
+			let tmp = this.#head;
+			for (let i = 1; i < index; i++) {
+				// loop until just before the index node
+				tmp = tmp.link;
+			}
+
+			if (tmp.link === this.#tail) {
+				tmp.link = null;
+				this.#tail = tmp;
+			} else {
+				tmp.link = tmp.link.link;
+			}
+		}
+
+		this.#size--;
+	}
+
+	insertAt(value, index) {}
 }
 
 export default LinkedList;
